@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from bson import ObjectId
-from typing import Optional
+from typing import Optional, List
 
 class PyObjectId(ObjectId):
 
@@ -20,8 +20,8 @@ class PyObjectId(ObjectId):
 
 
 class Produto(BaseModel):
-    alimento: str
-    ingredientes: list
+    nome_alimento: str
+    ingredientes: List[str] = []
     etapas: dict
     origem: dict
     dependencias: dict
@@ -30,6 +30,8 @@ class Produto(BaseModel):
     embalagem: dict
     conservacao: dict
     valores: dict
+    fontes: List[str] = []
+
     class Config:
         arbitrary_types_allowed = True
         json_encoders = {
